@@ -159,7 +159,7 @@ class Ticket {
   void _text(
     Uint8List textBytes, {
     PosStyles styles = const PosStyles(),
-    int? colInd = 0,
+    int? colInd,
     bool isKanji = false,
     int colWidth = 12,
     int? maxCharsPerLine,
@@ -608,7 +608,9 @@ class Ticket {
     // Adjust line spacing (for 16-unit line feeds): ESC 3 0x10 (HEX: 0x1b 0x33 0x10)
     bytes += [27, 51, 16];
     for (int i = 0; i < blobs.length; ++i) {
-      bytes += List.from(header)..addAll(blobs[i])..addAll('\n'.codeUnits);
+      bytes += List.from(header)
+        ..addAll(blobs[i])
+        ..addAll('\n'.codeUnits);
     }
     // Reset line spacing: ESC 2 (HEX: 0x1b 0x32)
     bytes += [27, 50];
