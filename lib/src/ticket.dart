@@ -318,6 +318,10 @@ class Ticket {
     setGlobalCodeTable(_codeTable);
   }
 
+  int? getMaxCharsPerLine() {
+    return _getCharsPerLine(_styles, null);
+  }
+
   int _getCharsPerLine(PosStyles styles, int? maxCharsPerLine) {
     int charsPerLine;
     if (maxCharsPerLine != null) {
